@@ -140,10 +140,27 @@ export default function Home({navigation}){
                             horizontal
                             showsHorizontalScrollIndicator={false}
                         />
-
                     </View>
+                    
                 </ImageBackground>
+                
             </View>
+            {/* <TouchableOpacity 
+                onPress={() => navigation.navigate("Top100")}
+                style={{marginTop: 10, marginLeft: 15, flexDirection: 'row'}}
+            >
+                <Text style={{color: "black", fontFamily: "GothamMedium", textDecorationLine: 'underline'}}>View All</Text>
+                <Image
+                    source={require('../assets/icons/right-arrow.png')}
+                    style={{
+                        width: 12,
+                        height: 12,
+                        tintColor: "grey",
+                        marginLeft: 4,
+                        alignSelf: 'center'
+                    }}
+                />
+            </TouchableOpacity> */}
         </View>
         )
     }

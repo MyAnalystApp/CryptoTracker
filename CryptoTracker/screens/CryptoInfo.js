@@ -3,6 +3,17 @@ import { StyleSheet, Button, View, Text, TouchableOpacity, Image, ScrollView, Di
 import {VictoryScatter, VictoryLine, VictoryChart, VictoryAxis, VictoryBar} from "victory-native";
 import VictoryCustomTheme from './components/VictoryCustomTheme';
 import SearchBar from './components/SearchBar';
+import {
+    BallIndicator,
+    BarIndicator,
+    DotIndicator,
+    MaterialIndicator,
+    PacmanIndicator,
+    PulseIndicator,
+    SkypeIndicator,
+    UIActivityIndicator,
+    WaveIndicator,
+  } from 'react-native-indicators';
 const { width, height } = Dimensions.get("window");
 
 export default function CryptoInfo({route, navigation}){
@@ -226,8 +237,12 @@ export default function CryptoInfo({route, navigation}){
             <View>
 
                 {cryptoInfo==null ? (
-                    <View style={{alignItems: 'center', marginTop: width/1.25}}>
-                        <Text style={{fontSize: 20, fontFamily: "GothamMedium" , color: "black"}}>Loading...</Text>
+                    <View style={{height: height, width: width, alignItems: 'center', justifyContent: 'center'}}>
+               
+                        <ImageBackground resizeMode="cover" style={{width: 50, height: 50 }} source={{uri: img}}>
+                            <MaterialIndicator trackWidth={5} size={100} color="#5D2DFD" />
+                        </ImageBackground>
+                        
                     </View>
                 ) : (
 

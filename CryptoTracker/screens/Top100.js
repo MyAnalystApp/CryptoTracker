@@ -3,6 +3,17 @@ import { StyleSheet, Button, View, Text, TouchableOpacity, Image, ScrollView, Di
 import {VictoryScatter, VictoryLine, VictoryChart, VictoryAxis, VictoryBar} from "victory-native";
 import VictoryCustomTheme from './components/VictoryCustomTheme';
 import SearchBar from './components/SearchBar';
+import {
+    BallIndicator,
+    BarIndicator,
+    DotIndicator,
+    MaterialIndicator,
+    PacmanIndicator,
+    PulseIndicator,
+    SkypeIndicator,
+    UIActivityIndicator,
+    WaveIndicator,
+  } from 'react-native-indicators';
 const { width, height } = Dimensions.get("window");
 
 export default function Top100({navigation}){
@@ -139,8 +150,8 @@ export default function Top100({navigation}){
                 <View style={{marginTop: 10}}>
                 
                     { topCurrency == null ? (
-                        <View style={{alignItems: 'center', marginTop: width/2}}>
-                            <Text style={{fontSize: 20, fontFamily: "GothamMedium" , color: "black"}}>Loading...</Text>
+                        <View style={{alignItems: 'center', marginTop: width - 300}}>
+                            <MaterialIndicator trackWidth={5} size={50} color="#5D2DFD" />
                         </View>
                     )  : (
 
@@ -153,7 +164,6 @@ export default function Top100({navigation}){
                                         paddingHorizontal: 12, 
                                         paddingVertical: 4
                                     }}
-                                    // onPress={() => cryptoId(coin.id,coin.image)}
                                     onPress={() => navigation.navigate("CryptoInfo",
                                         {
                                             val: coin.id,
@@ -259,7 +269,13 @@ export default function Top100({navigation}){
                                         paddingHorizontal: 12, 
                                         paddingVertical: 4
                                     }}
-                                    onPress={() => cryptoId(coin.id,coin.image)}
+                                    onPress={() => navigation.navigate("CryptoInfo",
+                                        {
+                                            val: coin.id,
+                                            img: coin.image,
+                                            screen: "Top100"
+                                        }
+                                    )}
                                 >
                                     <View style={{ flexDirection: 'row', height: 75, backgroundColor: "white", borderRadius: 8 }}>
                                         <View style={{ flex: 1, borderRadius: 6,justifyContent: 'center'}}>
@@ -346,7 +362,7 @@ export default function Top100({navigation}){
     }
 
     return (
-        <ScrollView>        
+        <ScrollView>    
             {renderAllCrypto()}
         </ScrollView>
     );
