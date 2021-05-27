@@ -145,22 +145,6 @@ export default function Home({navigation}){
                 </ImageBackground>
                 
             </View>
-            {/* <TouchableOpacity 
-                onPress={() => navigation.navigate("Top100")}
-                style={{marginTop: 10, marginLeft: 15, flexDirection: 'row'}}
-            >
-                <Text style={{color: "black", fontFamily: "GothamMedium", textDecorationLine: 'underline'}}>View All</Text>
-                <Image
-                    source={require('../assets/icons/right-arrow.png')}
-                    style={{
-                        width: 12,
-                        height: 12,
-                        tintColor: "grey",
-                        marginLeft: 4,
-                        alignSelf: 'center'
-                    }}
-                />
-            </TouchableOpacity> */}
         </View>
         )
     }
@@ -179,32 +163,38 @@ export default function Home({navigation}){
                         backgroundColor: "white",
                         borderRadius: 8,
                     }}
-                    onPress = {() => navigation.navigate("AboutBitcoin")}
+                    onPress = {() => navigation.navigate("Top100")}
                 >
                     <View style={{flexDirection: 'column', marginLeft: 8}}>
                         <View style={{flexDirection: 'row', }}>
                             <Image
-                                source={require('../assets/icons/blockchain-logo.png')}
+                                // source={require('../assets/icons/blockchain-logo.png')}
+                                source={require('../assets/images/block.jpg')}
                                 style={{
-                                    width: 30,
-                                    height: 30,
+                                    width: 70,
+                                    height: 70,
                                     marginRight: 8
                                 }}
                             />
-                            <Text style={{fontFamily: "GothamBold", alignSelf: 'center', fontSize: 14}}>About Blockchain & Cryptocurrency</Text>
+                            <View style={{alignSelf: 'center', width: width/2 + 20}}>
+                                <Text style={{fontFamily: "GothamBold", alignSelf: 'center', fontSize: 14, alignSelf: 'flex-start'}}>All Cryptocurrencies</Text>
+                                <Text style={{fontFamily: "GothamLight", marginRight: 8, fontSize: 12, lineHeight: 14, marginTop: 8}}>View all cryptocurrencies and their all market data along with their chart information.</Text>
+                            </View>
                             
                         </View>
-                        <Text style={{fontFamily: "GothamLight", marginRight: 8, fontSize: 12, lineHeight: 14, marginTop: 8}}>Cryptocurrency is simply the first application of the blockchain technology, and it was introduced as a financial instrument.</Text>
+                        
                     </View>
-                    <Image
-                        source={require('../assets/icons/right-arrow.png')}
-                        style={{
-                            width: 25,
-                            height: 25,
-                            tintColor: "grey",
-                            marginLeft: 8
-                        }}
-                    />
+                    <View style={{ flex: 1, alignItems: 'flex-end', marginRight: 20}}>
+                        <Image
+                            source={require('../assets/icons/right-arrow.png')}
+                            style={{
+                                width: 20,
+                                height: 20,
+                                tintColor: "grey",
+                                marginLeft: 8
+                            }}
+                        />
+                    </View>
                 </TouchableOpacity>
 
                 <View
@@ -251,97 +241,75 @@ export default function Home({navigation}){
             <TouchableOpacity
                 style={{
                     width: width/2 -19,
-                    paddingTop: 10,
-                    paddingBottom: 10,
+                    paddingTop: 12.5,
                     paddingHorizontal: 0,
                     marginLeft: 0,
                     marginRight: 10,
                     borderRadius: 10,
-                    backgroundColor: "white"
+                    backgroundColor: "white",
+                    alignSelf: 'center',
+                    paddingBottom: 22.5
                 }}
-                onPress = {() => navigation.navigate("Top100")}
+                onPress = {() => navigation.navigate("AboutBitcoin")}
             >
                 <View style={{flexDirection: 'column'}}>
                     <View style={{ alignItems: 'center'}}>
                         <Image 
-                            source={{ uri: `https://icon-library.com/images/100-icon/100-icon-0.jpg`}}
+                            source={require('../assets/images/bitcoin.webp')}
                             resizeMode="cover"
                             style={{
                                 marginTop: 0,
                                 width: 30,
                                 height: 30,
-                                marginTop: 5
+                                marginTop: 15
                             }}
                         />
                     </View>
                     <View>
-                        <Text style={{color:"black", fontFamily: "GothamBold", fontSize: 16, lineHeight: 30, alignSelf: 'center'}}>Top 100</Text>
-                        <Text style={{color: "grey", fontFamily: "GothamMedium", fontSize: 12, lineHeight: 22, alignSelf: 'center'}}>Cryptocurrency</Text>
+                        <Text style={{color:"black", fontFamily: "GothamBold", fontSize: 16, lineHeight: 30, alignSelf: 'center', marginTop: 10}}>About Bitcoin</Text>
+                        <Text style={{color: "grey", fontFamily: "GothamMedium", fontSize: 10, lineHeight: 22, alignSelf: 'center', marginTop: 0}}>See how Bitcoin works</Text>
                     </View>
 
                 </View>
 
                 {/* Value */}
-                <View style={{marginTop: 12, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                    <Text style={{color:"black", fontFamily: "GothamMedium", fontSize: 12, lineHeight: 30}}>View All</Text>
-                    <Image
-                        source={require('../assets/icons/right-arrow.png')}
-                        style={{
-                            width: 20,
-                            height: 20,
-                            tintColor: "grey",
-                            marginLeft: 8,
-                        }}
-                    />
-                </View>
             </TouchableOpacity>
 
             <TouchableOpacity
                 style={{
-                    width: width/2 -20,
+                    width: width/2 -19,
                     paddingTop: 10,
                     paddingBottom: 10,
                     paddingHorizontal: 0,
                     marginLeft: 0,
                     marginRight: 10,
                     borderRadius: 10,
-                    backgroundColor: "white"
+                    backgroundColor: "white",
+                    alignSelf: 'center',
+                    paddingBottom: 20
                 }}
-                // onPress = {() => sendDataToParent("exchangeRate")}
+                onPress = {() => navigation.navigate("AboutBitcoin")}
             >
                 <View style={{flexDirection: 'column'}}>
                     <View style={{ alignItems: 'center'}}>
                         <Image 
-                            source={{ uri: `https://www.iconpacks.net/icons/2/free-coin-exchange-icon-2427-thumb.png`}}
+                            source={require('../assets/images/Block-Round.png')}
                             resizeMode="cover"
                             style={{
-                                marginTop: 0,
-                                width: 30,
-                                height: 30,
-                                marginTop: 5
+                                width: 40,
+                                height: 40,
+                                marginTop: 10,
                             }}
                         />
                     </View>
                     <View>
-                        <Text style={{color:"black", fontFamily: "GothamBold", fontSize: 16, lineHeight: 30, alignSelf: 'center'}}>BTC</Text>
-                        <Text style={{color: "grey", fontFamily: "GothamMedium", fontSize: 12, lineHeight: 22, alignSelf: 'center'}}>Exchange rates</Text>
+                        <Text style={{color:"black", fontFamily: "GothamBold", fontSize: 16, lineHeight: 30, alignSelf: 'center', marginTop: 10}}>About Tracker</Text>
+                        <Text style={{color: "grey", fontFamily: "GothamMedium", fontSize: 10, lineHeight: 22, alignSelf: 'center', marginTop: 0}}>Know more about app</Text>
                     </View>
 
                 </View>
 
                 {/* Value */}
-                <View style={{marginTop: 12, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                    <Text style={{color:"black", fontFamily: "GothamMedium", fontSize: 12, lineHeight: 30}}>View All</Text>
-                    <Image
-                        source={require('../assets/icons/right-arrow.png')}
-                        style={{
-                            width: 20,
-                            height: 20,
-                            tintColor: "grey",
-                            marginLeft: 8,
-                        }}
-                    />
-                </View>
             </TouchableOpacity>
             
         </View>
