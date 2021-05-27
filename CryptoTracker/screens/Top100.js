@@ -27,17 +27,37 @@ export default function Top100({navigation}){
     }
 
     const [topCurrency, setTopCurrency] = useState(null);
+    const [loadMore, setLoadMore] = useState(true);
 
     const [query, setQuery] = useState('');
     const [names, setNames] = useState(null);
     const [count, setCount] = useState(1);
     const [filteredCurrency, setFilteredCurrency] = useState(null);
+    const [dummyCrypto, setDummyCrypto] = useState(null);
+    const [loader, setLoader] = useState(false);
 
     const fetchTopCurrency = () => {
-        fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=100&page=1&sparkline=false`)
+        fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=70&page=1&sparkline=false`)
         .then(res=>res.json())
         .then(result_coin=>{
             setTopCurrency(result_coin);
+            setDummyCrypto(result_coin);
+            //console.log(JSON.stringify(topCurrency,null,4));
+        })
+        .catch((e) => {
+            console.log("Error in TopCrypto ke fetch mai !! \n"+e);
+        })
+    }
+
+    const fetchAllCurrency = () => {
+        setLoadMore(false)
+        setLoader(true)
+        setDummyCrypto(null)
+        fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=180&page=1&sparkline=false`)
+        .then(res=>res.json())
+        .then(result_coin=>{
+            setTopCurrency(result_coin);
+            setDummyCrypto(result_coin);
             //console.log(JSON.stringify(topCurrency,null,4));
         })
         .catch((e) => {
@@ -147,7 +167,7 @@ export default function Top100({navigation}){
 
                 {(query==='') ? (
 
-                <View style={{marginTop: 10}}>
+                <View style={{marginTop: 10, marginBottom: 10}}>
                 
                     { topCurrency == null ? (
                         <View style={{alignItems: 'center', marginTop: width - 300}}>
@@ -356,6 +376,26 @@ export default function Top100({navigation}){
                 </View>
                 
                 )}
+                
+                {topCurrency != null && (
+                    loadMore && (
+                        <TouchableOpacity 
+                            onPress={() => fetchAllCurrency()}
+                            style={styles.loadButton}
+                        >
+                            <Text style={{textAlign: 'center', fontFamily: 'GothamMedium', color: "#5D2DFD"}}>Load More</Text>
+                        </TouchableOpacity>
+                    )
+                )}
+
+                {dummyCrypto == null && (
+                    loader && (
+                        <View style={{marginVertical: 30}}>
+                            <MaterialIndicator trackWidth={5} size={50} color="#5D2DFD" />
+                        </View>
+                    )
+                )}
+
 
             </ScrollView>
         )
@@ -369,6 +409,14 @@ export default function Top100({navigation}){
 };
 
 const styles = StyleSheet.create({
-
+    loadButton: {
+        backgroundColor: 'white',
+        width: 120,
+        paddingVertical: 15,
+        alignSelf: 'center',
+        borderRadius: 8,
+        marginTop: 30,
+        marginBottom: 30
+    }
 });
 
