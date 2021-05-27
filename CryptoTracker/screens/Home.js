@@ -288,7 +288,7 @@ export default function Home({navigation}){
                     alignSelf: 'center',
                     paddingBottom: 20
                 }}
-                onPress = {() => navigation.navigate("AboutBitcoin")}
+                onPress = {() => navigation.navigate("About")}
             >
                 <View style={{flexDirection: 'column'}}>
                     <View style={{ alignItems: 'center'}}>
