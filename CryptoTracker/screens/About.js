@@ -11,7 +11,6 @@ export default function About({navigation}){
         try {
           const value = await AsyncStorage.getItem('name');
           if (value !== null) {
-            console.log(value);
             setName(value);
           }
         } catch (error) {

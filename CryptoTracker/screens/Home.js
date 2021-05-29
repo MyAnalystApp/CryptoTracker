@@ -21,7 +21,6 @@ export default function Home({navigation}){
         try {
           const value = await AsyncStorage.getItem('name');
           if (value !== null) {
-            console.log(value);
             setName(value);
           }
         } catch (error) {
@@ -337,7 +336,6 @@ export default function Home({navigation}){
 
     return (
         <ScrollView>
-            {/* {trending == null ? ( */}
             {name==null ? (
                 <Welcome sendName={sendName} />
             ) : (

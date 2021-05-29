@@ -58,7 +58,6 @@ export default function Top100({navigation}){
         .then(result_coin=>{
             setTopCurrency(result_coin);
             setDummyCrypto(result_coin);
-            //console.log(JSON.stringify(topCurrency,null,4));
         })
         .catch((e) => {
             console.log("Error in TopCrypto ke fetch mai !! \n"+e);
@@ -94,8 +93,6 @@ export default function Top100({navigation}){
         setQuery(text);
         const matchedNames = findMatches(text, names);
         const dummyFiltered = topCurrency.filter(coin => (matchedNames.includes(coin.name)));
-
-        //console.log(dummyFiltered.length);
         setFilteredCurrency(dummyFiltered);
     }
 
