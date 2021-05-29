@@ -340,10 +340,16 @@ export default function Home({navigation}){
                 <Welcome sendName={sendName} />
             ) : (
                 <View>
-                    {renderNavbar()}
-                    {renderHeader()}
-                    {renderAbout()}
-                    {renderFeature()}
+                    {trending == null ? (
+                        <Welcome />
+                    ) : (
+                        <View>
+                            {renderNavbar()}
+                            {renderHeader()}
+                            {renderAbout()}
+                            {renderFeature()}
+                        </View>
+                    )}
                 </View>
             )}
         </ScrollView>

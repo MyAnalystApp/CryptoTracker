@@ -1,12 +1,23 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Button, View, Text, TouchableOpacity, Image, ScrollView, Dimensions, Animated, ImageBackground, FlatList, LogBox, Alert, Linking, TextInput, AsyncStorage } from 'react-native';
-
+import {
+    BallIndicator,
+    BarIndicator,
+    DotIndicator,
+    MaterialIndicator,
+    PacmanIndicator,
+    PulseIndicator,
+    SkypeIndicator,
+    UIActivityIndicator,
+    WaveIndicator,
+  } from 'react-native-indicators';
 const { width, height } = Dimensions.get("window");
 
 export default function About({sendName, navigation}){
 
-    const[viewMode, setViewMode] = useState("intro");
+    const[viewMode, setViewMode] = useState("loading");
     const[name, setName] = useState(null);
+    const[asyncName, setAsyncName] = useState(null);
 
     const _storeData = async () => {
         try {
@@ -17,6 +28,23 @@ export default function About({sendName, navigation}){
             console.log(error)
         }
     };
+
+    const _retrieveData = async () => {
+        try {
+          const value = await AsyncStorage.getItem('name');
+          if (value !== null) {
+            setAsyncName(value);
+          }else{
+            setViewMode("intro");
+          }
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
+    useEffect(()=>{
+        _retrieveData();
+    },[])
 
     function register(){
         name == null ? Alert.alert("Please enter your name") : _storeData();
@@ -77,17 +105,43 @@ export default function About({sendName, navigation}){
         )
     }
 
+    function renderLoading(){
+        return(
+            <View style={{width: width, height: height, backgroundColor: '#F8F9F8'}}>
+                <Image style={{width : width/1.5, height: width/1.5, alignSelf: 'center', marginTop: height/6}} source={require('../assets/images/main.jpg')} />
+                <MaterialIndicator style={{marginBottom: 100}} trackWidth={5} size={50} color="#7884FE" />
+            </View>
+        )
+    }
+
     return (
         <ScrollView>
-            {viewMode === "intro" ? (
+            {viewMode === "loading" ? (
                 <View>
-                    {renderIntro()}
+                    {renderLoading()}
                 </View>
             ) : (
                 <View>
-                    {renderInfo()}
+                    {asyncName == null ? (
+                        <View>
+                            {viewMode === "intro" ? (
+                                <View>
+                                    {renderIntro()}
+                                </View>
+                            ) : (
+                                <View>
+                                    {renderInfo()}
+                                </View>
+                            )}
+                        </View>
+                    ) : (
+                        <View>
+                            {renderLoading()}
+                        </View>
+                    )}
                 </View>
             )}
+
         </ScrollView>
     );
 };
