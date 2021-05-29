@@ -310,7 +310,7 @@ export default function Home({navigation}){
                 <View style={{flexDirection: 'column'}}>
                     <View style={{ alignItems: 'center'}}>
                         <Image 
-                            source={require('../assets/images/Block-Round.png')}
+                            source={require('../assets/images/logo.png')}
                             resizeMode="cover"
                             style={{
                                 width: 40,
