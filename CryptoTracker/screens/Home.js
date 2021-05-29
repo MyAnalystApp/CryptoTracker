@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {View, ScrollView, Text, TouchableOpacity, SafeAreaView, StyleSheet, Image, LogBox, ImageBackground, FlatList, Linking, Dimensions} from 'react-native';
-
+import {View, ScrollView, Text, TouchableOpacity, SafeAreaView, StyleSheet, Image, LogBox, ImageBackground, FlatList, Linking, Dimensions, AsyncStorage} from 'react-native';
+import Welcome from './Welcome';
 const { width } = Dimensions.get("window");
 
 export default function Home({navigation}){
 
     const [trending, setTrending] = useState(null);
+    const[name , setName] = useState(null);
 
     const fetchTrending = () => {
         fetch(`https://api.coingecko.com/api/v3/search/trending`)
@@ -16,8 +17,25 @@ export default function Home({navigation}){
         })
     }
 
+    const _retrieveData = async () => {
+        try {
+          const value = await AsyncStorage.getItem('name');
+          if (value !== null) {
+            console.log(value);
+            setName(value);
+          }
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
+    const sendName = (index) => {
+        setName(index);
+    };
+
     useEffect(()=>{
         fetchTrending(),
+        _retrieveData();
         LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
     },[])
 
@@ -319,10 +337,17 @@ export default function Home({navigation}){
 
     return (
         <ScrollView>
-            {renderNavbar()}
-            {renderHeader()}
-            {renderAbout()}
-            {renderFeature()}
+            {/* {trending == null ? ( */}
+            {name==null ? (
+                <Welcome sendName={sendName} />
+            ) : (
+                <View>
+                    {renderNavbar()}
+                    {renderHeader()}
+                    {renderAbout()}
+                    {renderFeature()}
+                </View>
+            )}
         </ScrollView>
     );
 };
