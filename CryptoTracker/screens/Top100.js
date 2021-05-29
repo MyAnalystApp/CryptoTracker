@@ -37,7 +37,7 @@ export default function Top100({navigation}){
     const [loader, setLoader] = useState(false);
 
     const fetchTopCurrency = () => {
-        fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=70&page=1&sparkline=false`)
+        fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=100&page=1&sparkline=false`)
         .then(res=>res.json())
         .then(result_coin=>{
             setTopCurrency(result_coin);
@@ -53,14 +53,14 @@ export default function Top100({navigation}){
         setLoadMore(false)
         setLoader(true)
         setDummyCrypto(null)
-        fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=180&page=1&sparkline=false`)
+        fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=200&page=1&sparkline=false`)
         .then(res=>res.json())
         .then(result_coin=>{
             setTopCurrency(result_coin);
             setDummyCrypto(result_coin);
         })
         .catch((e) => {
-            console.log("Error in TopCrypto ke fetch mai !! \n"+e);
+            console.log("Error in AllCrypto ke fetch mai !! \n"+e);
         })
     }
 
@@ -243,8 +243,8 @@ export default function Top100({navigation}){
                                                     fontSize: 14, 
                                                     fontFamily: 'GothamMedium', 
                                                     lineHeight: 22, 
-                                                    color: (coin.market_cap_change_percentage_24h).toString().charAt(0) == "-" ? "tomato" : "#37E39F", 
-                                                }}>{(coin.market_cap_change_percentage_24h).toFixed(2)}</Text>
+                                                    color: (coin.market_cap_change_percentage_24h) == null ? "#E02B55" : (coin.market_cap_change_percentage_24h).toString().charAt(0) == "-" ? "tomato" : "#37E39F", 
+                                                }}>{(coin.market_cap_change_percentage_24h) == null ? "null" : (coin.market_cap_change_percentage_24h).toFixed(2)}</Text>
                                             </View>
                                             <View style={{flexDirection: 'row'}}>
                                                 <Text style={{ marginLeft: 0, fontSize: 14, fontFamily: 'GothamMedium', lineHeight: 22, color: "grey" }}>Price: </Text>

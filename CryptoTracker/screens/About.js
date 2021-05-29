@@ -269,13 +269,19 @@ function renderHeader(){
 
                                 {/* Value */}
                             </TouchableOpacity>
+                            
+                            
                           </View>
+                          
+                          
                       </View>
 
                   </View>
             </View>
 
         </View>
+
+        
 
     </View>
 </View>
@@ -550,6 +556,7 @@ function renderHeader(){
                                         {/* Value */}
                                     </TouchableOpacity>
                                 </View>
+                                <Text style={{color: 'grey', fontSize: 10, fontFamily: "GothamMedium", marginLeft: 20, marginTop: 20, marginRight: 20, lineHeight: 16}}>Note: This app is currently under development, so new updates will arrive frequently. If you've found any bug please create an issue in the repository of the app given above or contact the developer.</Text>
                             </View>
 
                         </View>
@@ -564,7 +571,7 @@ function renderHeader(){
 
   function renderAboutDeveloper(){
       return(
-          <View style={{width: width - 30, height: 150, backgroundColor: "white", borderRadius: 8, marginTop: 20, alignSelf: 'center'}}>
+          <View style={{width: width - 30, height: 150, backgroundColor: "white", borderRadius: 8, marginTop: 20, alignSelf: 'center', marginBottom: 20}}>
               <Text style={{color:"black", fontFamily: "GothamBold", fontSize: 16, alignSelf: 'center', marginTop: 15}}>Developer's Info</Text>
               <View style={{flexDirection: 'row', marginTop: 10}}>
                     <TouchableOpacity
