@@ -195,7 +195,7 @@ export default function Top100({navigation}){
                                                 <View style={{
                                                     justifyContent: 'center',
                                                     alignItems: 'center',
-                                                    marginLeft: 10
+                                                    marginLeft: 15
                                                 }}>
                                                 <Image 
                                                     source={{ uri: `${coin.image}`}}
@@ -272,7 +272,7 @@ export default function Top100({navigation}){
                 <View style={{marginTop: 10}}>
             
                     { filteredCurrency == null || filteredCurrency.length==0 ? (
-                        <View style={{alignItems: 'center', marginTop: width/2}}>
+                        <View style={{alignItems: 'center', marginTop: width/3.5}}>
                             <Text style={{fontSize: 20, fontFamily: "GothamMedium" , color: "black"}}>Not Found, try another</Text>
                         </View>
                     )  : (
@@ -300,7 +300,7 @@ export default function Top100({navigation}){
                                                 <View style={{
                                                     justifyContent: 'center',
                                                     alignItems: 'center',
-                                                    marginLeft: 10
+                                                    marginLeft: 15
                                                 }}>
                                                 <Image 
                                                     source={{ uri: `${coin.image}`}}

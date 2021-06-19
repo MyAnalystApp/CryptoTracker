@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Button, View, Text, TouchableOpacity, Image, ScrollView, Dimensions, Animated, ImageBackground, FlatList, LogBox, Alert, Linking, AsyncStorage } from 'react-native';
+import { StyleSheet, Button, View, Text, TouchableOpacity, Image, ScrollView, Dimensions, Animated, ImageBackground, FlatList, LogBox, Alert, Linking, AsyncStorage, TextInput, ToastAndroid } from 'react-native';
 
 const { width, height } = Dimensions.get("window");
 
@@ -18,9 +18,22 @@ export default function About({navigation}){
         }
     };
 
+    const _storeData = async () => {
+        try {
+            await AsyncStorage.setItem(
+                'name', name
+            );
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
+
     useEffect(()=>{
         _retrieveData();
     },[])
+
+    const[editName, setEditName] = useState("view");
 
   function renderNavbar(){
     return(
@@ -68,10 +81,34 @@ function renderUser(){
                     }}
                 />
             </View>
-            <Text style={{fontFamily: "GothamMedium", textAlign: 'center', marginTop: 16, color: "black", fontSize: 16}}>{name}</Text>
-            <View style={{backgroundColor: "#e2d9ff", width: 100, height: 25, alignSelf: 'center', marginTop: 20, justifyContent: 'center', borderRadius: 100, borderWidth: 1, borderColor: "#5D2DFD" }}>
-                <Text style={{textAlign: 'center', fontSize: 10, alignSelf: 'center', fontFamily: "GothamMedium", color: "#5D2DFD"}}>Early Member</Text>
-            </View>
+            
+
+            {editName == "view" ? (
+                <View>
+                    <Text style={{fontFamily: "GothamMedium", textAlign: 'center', marginTop: 16, color: "black", fontSize: 16}}>{name}</Text>
+                    <TouchableOpacity onPress={() => setEditName("edit")} style={{backgroundColor: "#e2d9ff", width: 100, height: 25, alignSelf: 'center', marginTop: 20, justifyContent: 'center', borderRadius: 100, borderWidth: 1, borderColor: "#5D2DFD" }}>
+                        <Text style={{textAlign: 'center', fontSize: 10, alignSelf: 'center', fontFamily: "GothamMedium", color: "#5D2DFD"}}>Early Member</Text>
+                    </TouchableOpacity>
+                </View>
+            ) : (
+                <View style={{marginTop: 30, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                
+                    <TextInput 
+                        value={name}
+                        onChangeText={text => setName(text)}
+                        placeholder="Change Name"
+                        placeholderTextColor="#ccc"
+                        style={styles.textInput}
+                    />
+                    <TouchableOpacity onPress={() => _storeData() & setEditName("view")} style={{backgroundColor: '#f5f5f5', width: 43, height: 43 , justifyContent: 'center', borderRadius: 6, marginLeft: 5, marginTop: 4}}>
+                        <Image style={{width: 20, height: 20, alignSelf: 'center', marginBottom: 2, tintColor: 'grey'}} source={require('../assets/icons/done.png')} />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={() => setEditName("view")} style={{backgroundColor: '#f5f5f5', width: 43, height: 43 , justifyContent: 'center', borderRadius: 6, marginLeft: 5, marginTop: 4}}>
+                        <Image style={{width: 20, height: 20, alignSelf: 'center', marginBottom: 2, tintColor: 'grey'}} source={require('../assets/icons/close.png')} />
+                    </TouchableOpacity>
+                </View>
+            )}
         </View>
     )
 }
@@ -256,6 +293,18 @@ function renderUser(){
 };
 
 const styles = StyleSheet.create({
-
+    textInput:{
+        backgroundColor: "white", 
+        width: width/2.5,
+        alignSelf: 'center', 
+        marginTop: 5, 
+        borderRadius: 6, 
+        borderWidth: 2, 
+        borderColor: "#d9dcff", 
+        paddingLeft: 15,
+        fontFamily: "GothamMedium",
+        color: "grey",
+        height: 45
+    }
 });
 

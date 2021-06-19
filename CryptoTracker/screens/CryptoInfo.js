@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Button, View, Text, TouchableOpacity, Image, ScrollView, Dimensions, Animated, ImageBackground, FlatList, LogBox } from 'react-native';
-import {VictoryScatter, VictoryLine, VictoryChart, VictoryAxis, VictoryBar} from "victory-native";
+import {VictoryScatter, VictoryLine, VictoryChart, VictoryAxis, VictoryBar, VictoryTooltip} from "victory-native";
 import VictoryCustomTheme from './components/VictoryCustomTheme';
 import SearchBar from './components/SearchBar';
 import {
@@ -696,8 +696,13 @@ export default function CryptoInfo({route, navigation}){
                                     chartMode === "30" ? chart30 :
                                     chart365
                                 }
+                            // labelComponent={
+                            //     <VictoryTooltip
+                            //         flyoutStyle={{ stroke: "tomato", strokeWidth: 2 }}
+                            //     />
+                            // }
                         />
-
+                            
                         <VictoryAxis 
                             style={{
                                 tickLabels: { fill:"transparent"}
