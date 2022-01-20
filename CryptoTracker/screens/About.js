@@ -64,19 +64,19 @@ export default function About({navigation}){
 function renderUser(){
     return(
         <View style={{
-            height: 250,
+            height: 300,
             width: width,
             backgroundColor: 'white'
         }}>
-            <View style={{alignItems: 'center', marginTop: 30}}>
+            <View style={{alignItems: 'center', marginTop: 20}}>
                 <Image 
-                    source={require('../assets/images/about-main.jpeg')}
+                    source={require('../assets/images/Gemini-Bitcoin_Cash__BCH_-_Structure_and_Function_of_Peer-to-Peer_Electronic_Cash.webp')}
                     resizeMode="cover"
                     style={{
                         marginBottom: 0,
-                        width: 150,
-                        height: 80,
-                        marginTop: 20,
+                        width: 250,
+                        height: 150,
+                        marginTop: 10,
                         alignSelf: 'center'
                     }}
                 />
@@ -87,7 +87,7 @@ function renderUser(){
                 <View>
                     <Text style={{fontFamily: "GothamMedium", textAlign: 'center', marginTop: 16, color: "black", fontSize: 16}}>{name}</Text>
                     <TouchableOpacity onPress={() => setEditName("edit")} style={{backgroundColor: "#e2d9ff", width: 100, height: 25, alignSelf: 'center', marginTop: 20, justifyContent: 'center', borderRadius: 100, borderWidth: 1, borderColor: "#5D2DFD" }}>
-                        <Text style={{textAlign: 'center', fontSize: 10, alignSelf: 'center', fontFamily: "GothamMedium", color: "#5D2DFD"}}>Early Member</Text>
+                        <Text style={{textAlign: 'center', fontSize: 10, alignSelf: 'center', fontFamily: "GothamMedium", color: "#5D2DFD"}}>Change Name</Text>
                     </TouchableOpacity>
                 </View>
             ) : (
@@ -272,7 +272,7 @@ function renderUser(){
                             borderRadius: 10,
                             marginLeft: 7.5
                         }} 
-                        onPress={() => {Linking.openURL("https://neelbavarva.herokuapp.com")}}
+                        onPress={() => {Linking.openURL("https://portfolio-neelbavarva.vercel.app")}}
                     >
                         <Image style={{width: 30, height: 30, tintColor: "#6C45BC"}} source={require('../assets/images/globe.webp')} />
                         <Text style={{fontFamily: "GothamMedium", color: "grey", fontSize: 12, marginTop: 7}}>Website</Text>

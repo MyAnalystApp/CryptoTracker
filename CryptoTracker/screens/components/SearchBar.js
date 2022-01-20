@@ -10,14 +10,6 @@ export default function SearchBar({ onChangeTextHandler}) {
                 placeholderTextColor="grey"
                 onChangeText={text => onChangeTextHandler(text)}
             />
-            <View style={{flex: 1, alignItems: 'flex-end', justifyContent: 'center'}}>
-                <TouchableOpacity
-                    onPress={() => onChangeTextHandler("")}
-                    style={{ width: 48, height: 48, justifyContent: 'center', backgroundColor: '#f5f5f5', alignSelf: 'center', marginRight: 5, borderRadius: 6}}
-                >
-                    <Image style={{width: 23, height: 23, alignSelf: 'center', tintColor: 'grey'}} source={require('../../assets/icons/close.png')} />
-                </TouchableOpacity>
-            </View>
         </View>
     );
 };
@@ -31,7 +23,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     }, 
     textInput : {
-        width: width-80,
+        width: width-30,
         backgroundColor: "white",
         borderWidth: 2,
         borderColor: "#37E39F",

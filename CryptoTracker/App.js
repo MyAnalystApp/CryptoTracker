@@ -9,6 +9,7 @@ import AboutBitcoin from './screens/AboutBitcoin';
 import Top100 from './screens/Top100';
 import CryptoInfo from './screens/CryptoInfo';
 import About from './screens/About';
+import Portfolio from './screens/Portfolio';
 
 const Stack = createStackNavigator();
 const { width } = Dimensions.get("window");
@@ -42,6 +43,10 @@ export default function App(){
         <Stack.Screen
           name="About"
           component={About}
+        />
+        <Stack.Screen
+          name="Portfolio"
+          component={Portfolio}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -67,8 +67,8 @@ export default function Home({navigation}){
         <TouchableOpacity
             style={{
                 width: 200,
-                paddingTop: 20,
-                paddingBottom: 20,
+                paddingTop: 15,
+                paddingBottom: 15,
                 paddingHorizontal: 30,
                 marginLeft: index == 0 ? 12 : 0,
                 marginRight: 20,
@@ -82,7 +82,6 @@ export default function Home({navigation}){
                     screen : "Home"
                 }
             )}
-            // onPress={() => console.log(item.item.id)}
         >
             <View style={{flexDirection: 'row'}}>
                 <View>
@@ -98,8 +97,8 @@ export default function Home({navigation}){
                     />
                 </View>
                 <View style={{marginLeft: 8}}>
-                    <Text style={{color:"black", fontFamily: "GothamBold", fontSize: 16, lineHeight: 30}}>{item.item.name}</Text>
-                    <Text style={{color: "grey", fontFamily: "GothamMedium", fontSize: 12, lineHeight: 22}}>{item.item.symbol}</Text>
+                    <Text style={{color:"black", fontFamily: "GothamBold", fontSize: 16, lineHeight: 30}}>{ item.item.name.length > 10 ? item.item.name.substring(0,9) + "..." : item.item.name}</Text>
+                    <Text style={{color: "grey", fontFamily: "GothamMedium", fontSize: 12, lineHeight: 22}}>{item.item.symbol.length > 8 ? item.item.symbol.substring(0,7) + "..." : item.item.symbol}</Text>
                 </View>
 
             </View>
@@ -163,6 +162,34 @@ export default function Home({navigation}){
                 
             </View>
         </View>
+        )
+    }
+
+    function renderStudentPortfolio(){
+        return(
+            <View style={{marginTop: 15}}>
+                <TouchableOpacity
+                    style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        marginHorizontal: 14,
+                        paddingVertical: 24,
+                        paddingHorizontal: 8,
+                        backgroundColor: "white",
+                        borderRadius: 8,
+                    }}
+                    onPress={() => navigation.navigate("Portfolio")}
+                >
+                    <Image style={{height: 45, width: 65.5, marginLeft: 15}} source={require('../assets/images/icon-devx.png')} />
+                    <View style={{marginLeft: 20}}>
+                        <Text style={{fontFamily: "GothamBold", color: "#5D2DFD", borderBottomColor: "#ccc", borderBottomWidth: 1, paddingBottom: 5}}>Student Portfolio</Text>
+                        <Text style={{fontFamily: "GothamLight", paddingTop: 5}}>Buy | Save | Track | Practice</Text>
+                    </View>
+                    <View style={{flex: 1, justifyContent: 'flex-end', alignItems: 'flex-end'}}>
+                        <Text style={{fontFamily: "GothamBold", color: "#5D2DFD", fontSize: 12, borderColor: "#5D2DFD", borderWidth: 2, borderRadius: 4, textAlign: 'center', padding: 3, paddingBottom: 0, marginRight:10}}>New</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
         )
     }
 
@@ -343,10 +370,11 @@ export default function Home({navigation}){
                     {trending == null ? (
                         <Welcome />
                     ) : (
-                        <View>
+                        <View style={{paddingBottom: 20}}>
                             {renderNavbar()}
                             {renderHeader()}
                             {renderAbout()}
+                            {renderStudentPortfolio()}
                             {renderFeature()}
                         </View>
                     )}

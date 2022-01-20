@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Button, View, Text, TouchableOpacity, Image, ScrollView, Dimensions, Animated, ImageBackground, FlatList, LogBox } from 'react-native';
+import { StyleSheet, Button, View, Text, TouchableOpacity, Image, ScrollView, Dimensions, Animated, ImageBackground, FlatList, LogBox, AsyncStorage } from 'react-native';
 import {VictoryScatter, VictoryLine, VictoryChart, VictoryAxis, VictoryBar} from "victory-native";
 import VictoryCustomTheme from './components/VictoryCustomTheme';
 import SearchBar from './components/SearchBar';
@@ -35,6 +35,7 @@ export default function Top100({navigation}){
     const [filteredCurrency, setFilteredCurrency] = useState(null);
     const [dummyCrypto, setDummyCrypto] = useState(null);
     const [loader, setLoader] = useState(false);
+    const [card, setCard] = useState('');
 
     const fetchTopCurrency = () => {
         fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=100&page=1&sparkline=false`)
@@ -66,6 +67,7 @@ export default function Top100({navigation}){
 
     useEffect(()=>{
         fetchTopCurrency(),
+        fetchCardStatus(),
         LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
     },[])
 
@@ -97,6 +99,25 @@ export default function Top100({navigation}){
     }
 
 
+    const disableCard = async () => {
+        try {
+            await AsyncStorage.setItem('future_card', 'false')
+            fetchCardStatus()
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
+    const fetchCardStatus = async () => {
+        try {
+            const temp = await AsyncStorage.getItem('future_card')
+            setCard(temp);
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
+
     function renderAllCrypto(){
         return(
             <ScrollView>
@@ -123,6 +144,7 @@ export default function Top100({navigation}){
 
 
                 {/* Future is Here!! */}
+                {card !='false' ? 
                 <View style={{paddingLeft: 14, paddingRight: 14, marginTop: 14}}>
                     <View
                         style={{
@@ -135,6 +157,15 @@ export default function Top100({navigation}){
                             backgroundColor: "white"
                         }}
                     >
+                        <View style={{alignItems: 'flex-end', marginBottom: -20}}>
+                            <TouchableOpacity  
+                                onPress={() => disableCard()} 
+                                style={{padding: 10, borderRadius: 8.5, marginRight: 10, marginTop: 0, backgroundColor: '#f5f5f5'}}
+                            >
+                                <Image style={{width:20, height:20, tintColor: 'grey'}} source={require('../assets/icons/close.png')} />
+                            </TouchableOpacity>
+                        </View>
+                        
                         <View style={{flexDirection: 'column'}}>
                             <View style={{ alignItems: 'center'}}>
                                 <Image 
@@ -156,7 +187,8 @@ export default function Top100({navigation}){
                         </View>
 
                     </View>
-                </View>
+                </View> : null}
+                
 
                 <SearchBar onChangeTextHandler={processFiltered} />
 
