@@ -274,7 +274,7 @@ function renderUser(){
                         }} 
                         onPress={() => {Linking.openURL("https://portfolio-neelbavarva.vercel.app")}}
                     >
-                        <Image style={{width: 30, height: 30, tintColor: "#6C45BC"}} source={require('../assets/images/globe.webp')} />
+                        <Image style={{width: 35, height: 35}} source={require('../assets/images/react.png')} />
                         <Text style={{fontFamily: "GothamMedium", color: "grey", fontSize: 12, marginTop: 7}}>Website</Text>
                     </TouchableOpacity>
                 </View>
